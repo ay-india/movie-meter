@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1305235616",
+    "project_id": "movie-total",
+    "storage_bucket": "movie-total.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1305235616:android:ad221e7423e7d423c839c5",
+        "android_client_info": {
+          "package_name": "com.android.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1305235616-h9noc7jbptvms2tjv089qrtmtv1bqulh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzD3RB7EE4jn36vKmxnxG190Rjak_kohg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1305235616-h9noc7jbptvms2tjv089qrtmtv1bqulh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
