@@ -12,44 +12,38 @@ import 'package:movie_total/src/view/login/widgets/user_auth_input.dart';
 
 import '../../view_model/services/auth/auth_services.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
-  final emailController = TextEditingController();
+class _SignUpScreenState extends State<SignUpScreen> {
   bool circularind = false;
+  final emailController = TextEditingController();
+  final nameController = TextEditingController();
+
   final passwordController = TextEditingController();
 
-  void signUserIn() async {
-// trying sign in
+  void signUserUp() async {
     try {
       await FirebaseAuth.instance
-          .signInWithEmailAndPassword(
+          .createUserWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       )
           .then((value) {
-        Utils.toastMessage('Login Successfully');
         circularind = false;
+        Utils.toastMessage('Successfully Registered');
         Navigator.pushNamedAndRemoveUntil(
-            context, RouteName.homeScreen, (route) => false);
+            context, RouteName.signInPage, (route) => false);
       }).onError((error, stackTrace) {
         circularind = false;
-        Utils.toastMessage('   Wrong Email/Password !  ');
+        Utils.toastMessage("Wrong Formatted Email");
       });
     } on FirebaseAuthException catch (e) {
-      //wrong email
-      if (e.code == 'user-not-found')
-        Utils.toastMessage("Incorrect Mail");
-
-      //wrong password
-
-      else if (e.code == 'wrong-password')
-        Utils.toastMessage("Incorrect Password");
+      Utils.toastMessage(e.toString());
     }
     setState(() {});
   }
@@ -68,7 +62,7 @@ class _SignInScreenState extends State<SignInScreen> {
               width: 370,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('asset/images/login.jpg'),
+                  image: AssetImage('asset/images/register.jpg'),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -79,7 +73,7 @@ class _SignInScreenState extends State<SignInScreen> {
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  'Login',
+                  'Sign Up',
                   style: TextStyle(
                     fontSize: 28..sp,
                     fontWeight: FontWeight.bold,
@@ -90,6 +84,13 @@ class _SignInScreenState extends State<SignInScreen> {
             SizedBox(
               height: 15.h,
             ),
+
+            //name
+            UserAuthInput(
+                hintText: 'Name',
+                obscureText: false,
+                controller: nameController,
+                passwordVisibleIcon: false),
 
             //email
             UserAuthInput(
@@ -112,14 +113,15 @@ class _SignInScreenState extends State<SignInScreen> {
             // login button
 
             SigninButton(
-              text: 'Login',
-              onTap: () {
-                circularind = true;
-                signUserIn();
-                setState(() {});
-              },
-              cirInd: circularind,
-            ),
+                text: 'Register',
+                onTap: () {
+                  circularind = true;
+                  signUserUp();
+                  setState(() {
+                    
+                  });
+                },
+                cirInd: circularind),
 
             //
             SizedBox(
@@ -143,57 +145,16 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               ],
             ),
-            SizedBox(
-              height: 15.h,
-            ),
-            // Google sigin in
-            Center(
-              child: InkWell(
-                onTap: () {
-                  AuthService().signInWithGoogle(context);
-                  // Timer(Duration(seconds: 4),
-                  //     () => AuthService().isLogin(context));
 
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (context) => HomePage()));
-                },
-                child: Container(
-                  // clipBehavior: Clip.antiAlias,
-                  width: 260,
-                  padding: EdgeInsets.fromLTRB(1, 6, 1, 6),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(width: 1.5),
-                      borderRadius: BorderRadius.circular(13.sp)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Image.asset(
-                        'asset/images/google.png',
-                        width: 35.34,
-                        // height: 50,
-                      ),
-                      Text(
-                        "Login in with Google",
-                        style: TextStyle(
-                          color: AppColor.secondaryTextColor,
-                          fontSize: 16.sp,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
 //
 //
 
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 26.w, vertical: 18.h),
+              padding: EdgeInsets.symmetric(horizontal: 22.w, vertical: 18.h),
               child: Row(
                 children: [
                   Text(
-                    "Not a member yet,",
+                    "Already have an account,",
                     style: TextStyle(
                       // fontWeight: FontWeight.bold,
                       fontSize: 14.sp,
@@ -202,10 +163,10 @@ class _SignInScreenState extends State<SignInScreen> {
                   TextButton(
                     onPressed: () {
                       Navigator.pushNamedAndRemoveUntil(
-                          context, RouteName.signUpPage, (route) => false);
+                          context, RouteName.signInPage, (route) => false);
                     },
                     child: Text(
-                      'Create an Account',
+                      'Login here',
                       style: TextStyle(
                         fontSize: 15.sp,
                       ),
