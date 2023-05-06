@@ -60,7 +60,7 @@ class _MovieViewState extends State<MovieView> {
               // width: double.maxFinite,
               width: 360.w,
               decoration: const BoxDecoration(
-                color: Colors.lightBlue,
+                color: AppColor.whiteColor,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(22),
                   topRight: Radius.circular(22),
