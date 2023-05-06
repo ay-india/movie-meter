@@ -7,18 +7,23 @@ import 'package:movie_total/src/view/movie/movie_view.dart';
 
 import '../../view/login/register_view.dart';
 
-
 class Routes {
-  static Route<dynamic> generateRoute(RouteSettings settings) {
+  static Route<dynamic> generateRoute(
+    RouteSettings settings,
+    
+  ) {
     switch (settings.name) {
       case RouteName.homeScreen:
-        return MaterialPageRoute(builder: (context) => const  HomeScreen());
+        return MaterialPageRoute(builder: (context) => const HomeScreen());
       case RouteName.signInPage:
-        return MaterialPageRoute(builder: (context) => const  SignInScreen());
-        case RouteName.signUpPage:
-        return MaterialPageRoute(builder: (context) => const  SignUpScreen());
-        case RouteName.movieScreen:
-        return MaterialPageRoute(builder: (context) => const  MovieView());
+        return MaterialPageRoute(builder: (context) => const SignInScreen());
+      case RouteName.signUpPage:
+        return MaterialPageRoute(builder: (context) => const SignUpScreen());
+      case RouteName.movieScreen:
+        return MaterialPageRoute(
+            builder: (context) => const MovieView(
+                  index: 1,
+                ));
       default:
         return MaterialPageRoute(builder: (context) {
           return const Scaffold(
