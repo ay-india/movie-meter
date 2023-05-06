@@ -11,9 +11,14 @@ import 'package:movie_total/src/utils/utils.dart';
 import 'package:movie_total/src/view_model/services/api_services.dart';
 
 class MovieView extends StatefulWidget {
+  final int id;
   final int index;
   final String category;
-  const MovieView({super.key, required this.index, required this.category});
+  const MovieView(
+      {super.key,
+      required this.id,
+      required this.index,
+      required this.category});
 
   @override
   State<MovieView> createState() => _MovieViewState();
@@ -26,13 +31,23 @@ class _MovieViewState extends State<MovieView> {
     // TODO: implement initState
     super.initState();
     userEmail = FirebaseAuth.instance.currentUser!.email;
+    // checkFavourite();
   }
 
   late CollectionReference<Map<String, dynamic>> firestore =
       FirebaseFirestore.instance.collection(userEmail!);
 
+  // late Stream<QuerySnapshot<Map<String, dynamic>>> ref = FirebaseFirestore
+  //     .instance
+  //     .collection(FirebaseAuth.instance.currentUser!.email!)
+  //     .snapshots();
   bool tap = false;
   ApiServices client = ApiServices();
+
+  late DocumentReference _documentReference = FirebaseFirestore.instance
+      .collection(userEmail!)
+      .doc(widget.id.toString());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +65,7 @@ class _MovieViewState extends State<MovieView> {
             } else {
               return Stack(children: [
                 Container(
-                  height: 400,
+                  height: 330.h,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     image: DecorationImage(
@@ -66,13 +81,14 @@ class _MovieViewState extends State<MovieView> {
                 Positioned(
                   top: 16.h,
                   child: IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back,
-                        color: AppColor.whiteColor,
-                      )),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      color: AppColor.whiteColor,
+                    ),
+                  ),
                 ),
 
                 Positioned(
@@ -83,9 +99,9 @@ class _MovieViewState extends State<MovieView> {
                     width: 100.w,
                     // color: Colors.red,
                     child: Column(children: [
-                      const Icon(
+                      Icon(
                         Icons.play_circle,
-                        size: 35,
+                        size: 32.sp,
                         color: AppColor.whiteColor,
                       ),
                       Text(
@@ -103,20 +119,20 @@ class _MovieViewState extends State<MovieView> {
                 Positioned(
                   bottom: 0,
                   child: Container(
-                    height: 450,
+                    height: 380.h,
                     // width: double.maxFinite,
                     width: 360.w,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       color: AppColor.backgroundColor,
                       borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(22),
-                        topRight: Radius.circular(22),
+                        topLeft: Radius.circular(22.r),
+                        topRight: Radius.circular(22.r),
                       ),
                     ),
                     child: SingleChildScrollView(
                       child: Column(children: [
                         Padding(
-                          padding: EdgeInsets.all(15),
+                          padding: EdgeInsets.all(13.sp),
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -141,7 +157,7 @@ class _MovieViewState extends State<MovieView> {
                                                 .data!.results![widget.index].id
                                                 .toString())
                                             .set({
-                                              'releaseDate':snapshot
+                                              'releaseDate': snapshot
                                                   .data!
                                                   .results![widget.index]
                                                   .releaseDate
@@ -171,11 +187,7 @@ class _MovieViewState extends State<MovieView> {
                                               ),
                                             );
                                       } else {
-                                        // firestore
-                                        //     .doc(snapshot
-                                        //         .data!.docs[0]['id']
-                                        //         .toString())
-                                        //     .delete();
+                                        _documentReference.delete();
                                       }
                                       setState(() {});
                                     },
@@ -232,10 +244,10 @@ class _MovieViewState extends State<MovieView> {
                                     ),
                                     Row(
                                       children: [
-                                        const Icon(
+                                        Icon(
                                           Icons.star_rate,
                                           color: Colors.yellow,
-                                          size: 28,
+                                          size: 26.sp,
                                         ),
                                         SizedBox(
                                           width: 6.w,

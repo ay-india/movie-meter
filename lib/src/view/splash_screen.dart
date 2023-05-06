@@ -40,11 +40,11 @@ class _SplashScreenState extends State<SplashScreen>
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              height: 200,
-              width: 200,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                image: DecorationImage(
+              height: 200.h,
+              width: 200.w,
+              decoration:  BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                image: const DecorationImage(
                     image: AssetImage('asset/images/splash.png'),
                     fit: BoxFit.cover),
               ),
@@ -52,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen>
             Text(
               'Movie Meter',
               style: TextStyle(
-                fontSize: 25,
+                fontSize: 25.sp,
                 fontWeight: FontWeight.bold,
               ),
             )

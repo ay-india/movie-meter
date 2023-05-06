@@ -28,22 +28,22 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         children: [
           Container(
-            height: 35,
+            height: 28.h,
           ),
 
           // Appbar
           // MyAppBar(onTap: AuthService().signOut(context)),
           Container(
-            height: 60,
+            height: 45.h,
             padding: EdgeInsets.only(left: 10.w, right: 10.w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Center(
+                Center(
                     child: Text(
                   'MovieMeter',
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 21.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 )),
@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: const Icon(Icons.favorite_border_outlined),
                     ),
                     SizedBox(
-                      width: 15.w,
+                      width: 25.w,
                     ),
                     InkWell(
                       onTap: () {
@@ -85,15 +85,15 @@ class _HomeScreenState extends State<HomeScreen> {
 // Top Rated Movie
 
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8),
+            padding: EdgeInsets.symmetric(horizontal: 9.0.w, vertical: 7.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   "Top Rated",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 21,
+                      fontSize: 19.sp,
                       color: Colors.black),
                 ),
                 InkWell(
@@ -127,22 +127,24 @@ class _HomeScreenState extends State<HomeScreen> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => MovieView(
+                                          id: snapshot
+                                              .data!.results![index].id!,
                                           index: index,
                                           category: 'top_rated',
                                         )));
                           },
                           child: Container(
-                            margin: EdgeInsets.all(12),
+                            margin: EdgeInsets.all(10.sp),
                             // height: 20,
-                            width: 200,
+                            width: 170.w,
                             decoration: BoxDecoration(
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.grey.withOpacity(
                                     0.5,
                                   ),
-                                  spreadRadius: 2,
-                                  blurRadius: 10,
+                                  spreadRadius: 1.sp,
+                                  blurRadius: 8.sp,
                                   offset: const Offset(
                                     0,
                                     3,
@@ -150,16 +152,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ],
                               color: Colors.white70,
-                              borderRadius: BorderRadius.circular(19),
+                              borderRadius: BorderRadius.circular(19.r),
                             ),
                             child: Column(children: [
                               Container(
-                                margin: const EdgeInsets.all(5),
+                                margin: EdgeInsets.all(4.sp),
                                 height: 180.h,
-                                width: 230,
+                                width: 220.w,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
-                                  borderRadius: BorderRadius.circular(18),
+                                  borderRadius: BorderRadius.circular(18.r),
                                   image: DecorationImage(
                                     fit: BoxFit.fill,
                                     image: NetworkImage(
@@ -169,19 +171,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               Container(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
+                                padding: EdgeInsets.symmetric(horizontal: 9.w),
                                 // height: 50,
-                                width: 230,
+                                width: 220.w,
                                 decoration: BoxDecoration(
                                   // color: Colors.white38,
-                                  borderRadius: BorderRadius.circular(18),
+                                  borderRadius: BorderRadius.circular(18.r),
                                 ),
                                 child: Text(
                                   snapshot.data!.results![index].title
                                       .toString(),
-                                  style: const TextStyle(
-                                      fontSize: 20,
+                                  style: TextStyle(
+                                      fontSize: 18.sp,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black),
                                   maxLines: 2,
@@ -189,11 +190,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               Container(
-                                padding: const EdgeInsets.all(3),
+                                padding: EdgeInsets.all(3.sp),
                                 // margin: EdgeInsets.all(5),
                                 alignment: Alignment.bottomRight,
                                 // height: 25,
-                                width: 230,
+                                width: 220.w,
                                 // color: Colors.white54,
                                 child: Row(
                                   children: [
@@ -218,8 +219,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
 
-          const SizedBox(
-            height: 15,
+          SizedBox(
+            height: 13.h,
           ),
 
 //----------------------------------------------------------------------
@@ -231,21 +232,21 @@ class _HomeScreenState extends State<HomeScreen> {
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.2),
-                  spreadRadius: 2,
-                  blurRadius: 4,
+                  spreadRadius: 1.sp,
+                  blurRadius: 4.sp,
                   offset: const Offset(0, 5),
                 ),
               ],
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8),
+            padding: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 7.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   "Popular",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 21,
+                      fontSize: 19.sp,
                       color: Colors.black),
                 ),
                 InkWell(
@@ -281,12 +282,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => MovieView(
-                                          index: index, category: 'trending'),
+                                          id: snapshot
+                                              .data!.results![index].id!,
+                                          index: index,
+                                          category: 'trending'),
                                     ),
                                   );
                                 },
                                 child: Container(
-                                  margin: const EdgeInsets.all(12),
+                                  margin: EdgeInsets.all(10.sp),
                                   height: 140.h,
                                   width: double.infinity,
                                   decoration: BoxDecoration(
@@ -295,8 +299,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                         color: Colors.grey.withOpacity(
                                           0.5,
                                         ),
-                                        spreadRadius: 2,
-                                        blurRadius: 10,
+                                        spreadRadius: 1.sp,
+                                        blurRadius: 8.sp,
                                         offset: const Offset(
                                           0,
                                           3,
@@ -304,16 +308,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ],
                                     color: Colors.white70,
-                                    borderRadius: BorderRadius.circular(19),
+                                    borderRadius: BorderRadius.circular(19.r),
                                   ),
                                   child: Row(children: [
                                     Container(
-                                      margin: const EdgeInsets.all(5),
+                                      margin: EdgeInsets.all(4.sp),
                                       height: 130.h,
                                       width: 110.w,
                                       decoration: BoxDecoration(
                                         color: Colors.white,
-                                        borderRadius: BorderRadius.circular(18),
+                                        borderRadius:
+                                            BorderRadius.circular(18.r),
                                         image: DecorationImage(
                                           fit: BoxFit.fill,
                                           image: NetworkImage(
@@ -325,25 +330,25 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Column(
                                       children: [
                                         Container(
-                                          margin: const EdgeInsets.only(
-                                            top: 15,
-                                            right: 8,
-                                            left: 8,
-                                            bottom: 8,
+                                          margin: EdgeInsets.only(
+                                            top: 13.h,
+                                            right: 7.w,
+                                            left: 8.w,
+                                            bottom: 7.h,
                                           ),
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 10),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 10.sp),
                                           // height: 50,
                                           width: 200.w,
                                           decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(18),
+                                                BorderRadius.circular(18.r),
                                           ),
                                           child: Text(
                                             snapshot.data!.results![index].title
                                                 .toString(),
-                                            style: const TextStyle(
-                                                fontSize: 20,
+                                            style: TextStyle(
+                                                fontSize: 20.sp,
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.black),
                                             maxLines: 2,
@@ -351,18 +356,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),
                                         ),
                                         Container(
-                                          padding: const EdgeInsets.all(3),
+                                          padding: EdgeInsets.all(3.sp),
                                           // margin: EdgeInsets.all(5),
                                           alignment: Alignment.bottomRight,
                                           // height: 25,
-                                          width: 230,
+                                          width: 220.w,
                                           // color: Colors.white54,
                                           child: Column(
                                             children: [
                                               Row(
                                                 children: [
                                                   const Icon(
-                                                    Icons.star_rate_outlined,
+                                                    Icons.star_rate,
                                                     color: Colors.yellow,
                                                   ),
                                                   SizedBox(
@@ -370,16 +375,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   ),
                                                   Text(
                                                     '${snapshot.data!.results![index].voteAverage.toString()}/10',
-                                                    style: const TextStyle(
-                                                        fontSize: 19,
+                                                    style: TextStyle(
+                                                        fontSize: 18.sp,
                                                         color: AppColor
                                                             .secondaryTextColor),
                                                   ),
                                                 ],
                                               ),
                                               Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
+                                                padding: EdgeInsets.all(8.0.sp),
                                                 child: Align(
                                                     alignment:
                                                         Alignment.topLeft,

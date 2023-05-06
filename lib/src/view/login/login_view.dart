@@ -65,8 +65,8 @@ class _SignInScreenState extends State<SignInScreen> {
           children: [
             // login ui image
             Container(
-              height: 270,
-              width: 370,
+              height: 230.h,
+              width: 330.w,
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('asset/images/login.jpg'),
@@ -164,14 +164,14 @@ class _SignInScreenState extends State<SignInScreen> {
                   padding: EdgeInsets.fromLTRB(1, 6, 1, 6),
                   decoration: BoxDecoration(
                       color: Colors.white,
-                      border: Border.all(width: 1.5),
+                      border: Border.all(width: 1.5.sp),
                       borderRadius: BorderRadius.circular(13.sp)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Image.asset(
                         'asset/images/google.png',
-                        width: 35.34,
+                        width: 35.34.w,
                         // height: 50,
                       ),
                       Text(

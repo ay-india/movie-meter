@@ -27,7 +27,7 @@ class _FavouriteViewState extends State<FavouriteView> {
       body: SafeArea(
         child: Column(children: [
           Padding(
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.all(8.sp),
             child: Row(children: [
               IconButton(
                 onPressed: () {
@@ -76,6 +76,8 @@ class _FavouriteViewState extends State<FavouriteView> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => MovieView(
+                                  id: int.parse(
+                                      snapshot.data!.docs[index]['id']),
                                   index: snapshot.data!.docs[index]['index'],
                                   category: snapshot
                                       .data!.docs[index]['category']
@@ -84,7 +86,7 @@ class _FavouriteViewState extends State<FavouriteView> {
                           );
                         },
                         child: Container(
-                          margin: const EdgeInsets.all(12),
+                          margin: EdgeInsets.all(10.sp),
                           height: 140.h,
                           width: double.infinity,
                           decoration: BoxDecoration(
@@ -93,8 +95,8 @@ class _FavouriteViewState extends State<FavouriteView> {
                                 color: Colors.grey.withOpacity(
                                   0.5,
                                 ),
-                                spreadRadius: 2,
-                                blurRadius: 10,
+                                spreadRadius: 1.sp,
+                                blurRadius: 8.sp,
                                 offset: const Offset(
                                   0,
                                   3,
@@ -102,16 +104,16 @@ class _FavouriteViewState extends State<FavouriteView> {
                               ),
                             ],
                             color: Colors.white70,
-                            borderRadius: BorderRadius.circular(19),
+                            borderRadius: BorderRadius.circular(19.sp),
                           ),
                           child: Row(children: [
                             Container(
-                              margin: const EdgeInsets.all(5),
+                              margin: EdgeInsets.all(5.sp),
                               height: 130.h,
                               width: 110.w,
                               decoration: BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.circular(18),
+                                borderRadius: BorderRadius.circular(18.sp),
                                 image: DecorationImage(
                                   fit: BoxFit.fill,
                                   image: NetworkImage(
@@ -124,24 +126,24 @@ class _FavouriteViewState extends State<FavouriteView> {
                             Column(
                               children: [
                                 Container(
-                                  margin: const EdgeInsets.only(
-                                    top: 15,
-                                    right: 8,
-                                    left: 8,
-                                    bottom: 8,
+                                  margin: EdgeInsets.only(
+                                    top: 13.sp,
+                                    right: 8.sp,
+                                    left: 8.sp,
+                                    bottom: 8.sp,
                                   ),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10),
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 10.sp),
                                   // height: 50,
                                   width: 200.w,
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(18),
+                                    borderRadius: BorderRadius.circular(18.sp),
                                   ),
                                   child: Text(
                                     snapshot.data!.docs[index]['title']
                                         .toString(),
-                                    style: const TextStyle(
-                                        fontSize: 20,
+                                    style: TextStyle(
+                                        fontSize: 18.sp,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black),
                                     maxLines: 2,
@@ -149,11 +151,11 @@ class _FavouriteViewState extends State<FavouriteView> {
                                   ),
                                 ),
                                 Container(
-                                  padding: const EdgeInsets.all(3),
+                                  padding: EdgeInsets.all(3.sp),
                                   // margin: EdgeInsets.all(5),
                                   alignment: Alignment.bottomRight,
                                   // height: 25,
-                                  width: 230,
+                                  width: 220.w,
                                   // color: Colors.white54,
                                   child: Column(
                                     children: [
@@ -168,19 +170,30 @@ class _FavouriteViewState extends State<FavouriteView> {
                                           ),
                                           Text(
                                             '${snapshot.data!.docs[index]['rating'].toString()}/10',
-                                            style: const TextStyle(
-                                                fontSize: 19,
+                                            style: TextStyle(
+                                                fontSize: 17.sp,
                                                 color: AppColor
                                                     .secondaryTextColor),
                                           ),
                                         ],
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.all(8.0),
+                                        padding: EdgeInsets.only(
+                                            left: 8.0.sp, right: 10.sp),
                                         child: Align(
-                                            alignment: Alignment.topLeft,
-                                            child: Text(
-                                                'Release Date: ${snapshot.data!.docs[index]['releaseDate'].toString()}')),
+                                            alignment: Alignment.topRight,
+                                            child: IconButton(
+                                                onPressed: () {
+                                                  FirebaseFirestore.instance
+                                                      .collection(FirebaseAuth
+                                                          .instance
+                                                          .currentUser!
+                                                          .email!)
+                                                      .doc(snapshot.data!
+                                                          .docs[index]['id'])
+                                                      .delete();
+                                                },
+                                                icon: Icon(Icons.delete))),
                                       ),
                                     ],
                                   ),

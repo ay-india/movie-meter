@@ -10,7 +10,6 @@ import '../../view/login/register_view.dart';
 class Routes {
   static Route<dynamic> generateRoute(
     RouteSettings settings,
-    
   ) {
     switch (settings.name) {
       case RouteName.homeScreen:
@@ -22,7 +21,9 @@ class Routes {
       case RouteName.movieScreen:
         return MaterialPageRoute(
             builder: (context) => const MovieView(
-                  index: 1,category: 'trending',
+                  id: 12,
+                  index: 1,
+                  category: 'trending',
                 ));
       default:
         return MaterialPageRoute(builder: (context) {

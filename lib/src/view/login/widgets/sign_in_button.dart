@@ -6,7 +6,11 @@ class SigninButton extends StatelessWidget {
   final Function()? onTap;
   final bool cirInd;
   final text;
-  const SigninButton({super.key, required this.cirInd,required this.text, required this.onTap});
+  const SigninButton(
+      {super.key,
+      required this.cirInd,
+      required this.text,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +20,7 @@ class SigninButton extends StatelessWidget {
         onTap: onTap,
         child: Container(
           // color: Colors.orange,
-          padding: EdgeInsets.all(10),
+          padding: EdgeInsets.all(9.sp),
           // margin: EdgeInsets.symmetric(horizontal: 10),
           alignment: Alignment.center,
           width: double.infinity,
@@ -28,13 +32,15 @@ class SigninButton extends StatelessWidget {
               22.r,
             ),
           ),
-          child: cirInd?Center(child: CircularProgressIndicator()):Text(
-            text,
-            style: TextStyle(
-                fontSize: 20.sp,
-                fontWeight: FontWeight.bold,
-                color: AppColor.primaryTextColor),
-          ),
+          child: cirInd
+              ? Center(child: CircularProgressIndicator())
+              : Text(
+                  text,
+                  style: TextStyle(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.bold,
+                      color: AppColor.primaryTextColor),
+                ),
         ),
       ),
     );

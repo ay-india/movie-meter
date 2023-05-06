@@ -59,8 +59,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
           children: [
             // login ui image
             Container(
-              height: 270,
-              width: 370,
+              height: 230.h,
+              width: 330.w,
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('asset/images/register.jpg'),
@@ -76,7 +76,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 child: Text(
                   'Sign Up',
                   style: TextStyle(
-                    fontSize: 28..sp,
+                    fontSize: 28.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -178,7 +178,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
           ],
         ),
-      )),
+      ),),
     );
   }
 }
