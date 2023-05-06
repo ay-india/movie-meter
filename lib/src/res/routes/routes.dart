@@ -22,7 +22,7 @@ class Routes {
       case RouteName.movieScreen:
         return MaterialPageRoute(
             builder: (context) => const MovieView(
-                  index: 1,
+                  index: 1,category: 'trending',
                 ));
       default:
         return MaterialPageRoute(builder: (context) {

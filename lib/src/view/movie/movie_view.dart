@@ -8,7 +8,8 @@ import 'package:movie_total/src/view_model/services/api_services.dart';
 
 class MovieView extends StatefulWidget {
   final int index;
-  const MovieView({super.key, required this.index});
+  final String category;
+  const MovieView({super.key, required this.index,required this.category});
 
   @override
   State<MovieView> createState() => _MovieViewState();
@@ -22,7 +23,7 @@ class _MovieViewState extends State<MovieView> {
       body: Container(
         height: double.maxFinite,
         child: FutureBuilder(
-          future: client.fetchTopRatedMovie(),
+          future: widget.category=='top_rated'? client.fetchTopRatedMovie():client.fetchPopularMovie(),
           builder: (context, AsyncSnapshot<TrendingMovie> snapshot) {
             if (!snapshot.hasData) {
               return Center(

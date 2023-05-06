@@ -1,12 +1,13 @@
-class PopularMovie {
+class PopularMovieModel {
   int? page;
   List<Results>? results;
   int? totalPages;
   int? totalResults;
 
-  PopularMovie({this.page, this.results, this.totalPages, this.totalResults});
+  PopularMovieModel(
+      {this.page, this.results, this.totalPages, this.totalResults});
 
-  PopularMovie.fromJson(Map<String, dynamic> json) {
+  PopularMovieModel.fromJson(Map<String, dynamic> json) {
     page = json['page'];
     if (json['results'] != null) {
       results = <Results>[];

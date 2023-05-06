@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
-                  "Top Rated Movies",
+                  "Top Rated",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 21,
@@ -119,8 +119,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        MovieView(index: index)));
+                                    builder: (context) => MovieView(
+                                          index: index,
+                                          category: 'top_rated',
+                                        )));
                           },
                           child: Container(
                             margin: EdgeInsets.all(12),
@@ -253,7 +255,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Container(
                 width: double.infinity,
                 child: FutureBuilder(
-                  future: client.fetchTopRatedMovie(),
+                  future: client.fetchPopularMovie(),
                   builder: (context, AsyncSnapshot<TrendingMovie> snapshot) {
                     if (!snapshot.hasData) {
                       return const Center(
@@ -271,8 +273,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          MovieView(index: index),
+                                      builder: (context) => MovieView(
+                                          index: index, category: 'trending'),
                                     ),
                                   );
                                 },

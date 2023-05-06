@@ -24,12 +24,12 @@ class ApiServices {
   }
 
 //Popular movies
-Future<PopularMovie> fetchPopularMovie() async {
+  Future<TrendingMovie> fetchPopularMovie() async {
     final response = await http.get(Uri.parse(
-        "https://api.themoviedb.org/3/movie/popular?api_key=5c715122a3acf71fa6de2524dff86151"));
+        "https://api.themoviedb.org/3/trending/all/day?api_key=5c715122a3acf71fa6de2524dff86151"));
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
-      return PopularMovie.fromJson(data);
+      return TrendingMovie.fromJson(data);
     } else {
       throw Exception("Error");
     }
