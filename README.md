@@ -19,7 +19,11 @@ samples, guidance on mobile development, and a full API reference.
 MovieMeter is a cutting-edge mobile application that brings the world of movie reviews right to your fingertips. With MovieMeter, you can explore and discover the latest insights, ratings, and opinions about movies from a diverse community of film enthusiasts. Whether you're a casual viewer or a dedicated cinephile, MovieMeter is your go-to app for making informed decisions about what to watch next.
 
 ## TechStack Use
-Flutter
-Firebase
-Cloud Firestore Database
-The Movie Database Api(www.themoviedb.org)
+Dart <br />
+Flutter <br />
+Firebase <br />
+Cloud Firestore Database <br />
+The Movie Database Api(www.themoviedb.org) <br />
+
+<br />
+<br />
