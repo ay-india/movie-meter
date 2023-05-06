@@ -31,7 +31,7 @@ The Movie Database Api(www.themoviedb.org) <br />
 ## App Screenshots
 <br />
 splash Screen<br /><br />
-<img src="https://user-images.githubusercontent.com/96453772/236631777-bd230442-9a2b-4e49-8936-50e9bd311f78.jpg" width="400" height="700" />
+<img src="https://user-images.githubusercontent.com/96453772/236631777-bd230442-9a2b-4e49-8936-50e9bd311f78.jpg" width="360" height="720" />
 
 <br /><br /><br />
 SignUp Page<br /><br />
