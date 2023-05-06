@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:movie_total/src/res/colors/app_colors.dart';
-import 'package:movie_total/src/utils/routes.dart';
+import 'package:movie_total/src/res/routes/routes.dart';
 import 'package:movie_total/src/view/splash_screen.dart';
 
 import 'view_model/services/auth/auth_services.dart';

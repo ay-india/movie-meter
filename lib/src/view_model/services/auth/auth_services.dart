@@ -6,7 +6,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:movie_total/src/view/home/home_view.dart';
 import 'package:movie_total/src/view/login/login_view.dart';
 
-import '../../../utils/routes_name.dart';
+
+import '../../../res/routes/routes_name.dart';
 import '../../../utils/utils.dart';
 
 

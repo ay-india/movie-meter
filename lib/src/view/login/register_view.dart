@@ -5,11 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:movie_total/src/res/colors/app_colors.dart';
-import 'package:movie_total/src/utils/routes_name.dart';
+
 import 'package:movie_total/src/utils/utils.dart';
 import 'package:movie_total/src/view/login/widgets/sign_in_button.dart';
 import 'package:movie_total/src/view/login/widgets/user_auth_input.dart';
 
+import '../../res/routes/routes_name.dart';
 import '../../view_model/services/auth/auth_services.dart';
 
 class SignUpScreen extends StatefulWidget {
