@@ -32,11 +32,11 @@ The Movie Database Api(www.themoviedb.org) <br />
 <br />
 splash Screen<br /><br />
 
-![splash](https://user-images.githubusercontent.com/96453772/236631777-bd230442-9a2b-4e49-8936-50e9bd311f78.jpg)
+![splash](https://user-images.githubusercontent.com/96453772/236631777-bd230442-9a2b-4e49-8936-50e9bd311f78.jpg | width=100)
 <br /><br /><br />
 SignUp Page<br /><br />
 
-![signup](https://user-images.githubusercontent.com/96453772/236631818-c7117465-bd09-42ad-8356-2b13803f2543.jpg)
+![signup](https://user-images.githubusercontent.com/96453772/236631818-c7117465-bd09-42ad-8356-2b13803f2543.jpg | width=100)
 
 <br /><br /><br />
 
