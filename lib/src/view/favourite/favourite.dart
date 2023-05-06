@@ -76,6 +76,7 @@ class _FavouriteViewState extends State<FavouriteView> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => MovieView(
+                                isfavourite: true,
                                   id: int.parse(
                                       snapshot.data!.docs[index]['id']),
                                   index: snapshot.data!.docs[index]['index'],

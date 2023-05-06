@@ -11,6 +11,7 @@ import 'package:movie_total/src/utils/utils.dart';
 import 'package:movie_total/src/view_model/services/api_services.dart';
 
 class MovieView extends StatefulWidget {
+  final bool isfavourite;
   final int id;
   final int index;
   final String category;
@@ -18,7 +19,8 @@ class MovieView extends StatefulWidget {
       {super.key,
       required this.id,
       required this.index,
-      required this.category});
+      required this.category,
+      required this.isfavourite});
 
   @override
   State<MovieView> createState() => _MovieViewState();
@@ -26,10 +28,12 @@ class MovieView extends StatefulWidget {
 
 class _MovieViewState extends State<MovieView> {
   late String? userEmail;
+  bool tap = false;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    tap = widget.isfavourite;
     userEmail = FirebaseAuth.instance.currentUser!.email;
     // checkFavourite();
   }
@@ -41,7 +45,7 @@ class _MovieViewState extends State<MovieView> {
   //     .instance
   //     .collection(FirebaseAuth.instance.currentUser!.email!)
   //     .snapshots();
-  bool tap = false;
+
   ApiServices client = ApiServices();
 
   late DocumentReference _documentReference = FirebaseFirestore.instance

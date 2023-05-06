@@ -21,6 +21,7 @@ class Routes {
       case RouteName.movieScreen:
         return MaterialPageRoute(
             builder: (context) => const MovieView(
+                  isfavourite: false,
                   id: 12,
                   index: 1,
                   category: 'trending',

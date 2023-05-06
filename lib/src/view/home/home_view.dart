@@ -127,6 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => MovieView(
+                                      isfavourite: false,
                                           id: snapshot
                                               .data!.results![index].id!,
                                           index: index,
@@ -282,6 +283,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => MovieView(
+                                        isfavourite: false,
                                           id: snapshot
                                               .data!.results![index].id!,
                                           index: index,
