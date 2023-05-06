@@ -50,7 +50,7 @@ GoogleSignIn Popup<br /><br />
 <br /><br /><br />
 
 Home Screen <br /><br />
-<img src="https://user-images.githubusercontent.com/96453772/236632177-52a35ebf-c198-40f0-b09a-1a61881911a9.jpg" width="360" height="720" />
+<img src="https://user-images.githubusercontent.com/96453772/236640929-9ad5306b-673f-4233-bf45-fe50159ee5b1.jpg" width="360" height="720" />
 
 
 <br /><br /><br />
