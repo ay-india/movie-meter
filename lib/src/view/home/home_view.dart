@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_total/main.dart';
 import 'package:movie_total/src/model/popular_movie_model.dart';
 import 'package:movie_total/src/res/colors/app_colors.dart';
+import 'package:movie_total/src/view/favourite/favourite.dart';
 import 'package:movie_total/src/view/home/widgets/app_bar.dart';
 import 'package:movie_total/src/view/movie/movie_view.dart';
 import 'package:movie_total/src/view_model/services/auth/auth_services.dart';
@@ -50,7 +51,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FavouriteView()),
+                        );
+                      },
                       child: const Icon(Icons.favorite_border_outlined),
                     ),
                     SizedBox(

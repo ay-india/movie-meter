@@ -1,21 +1,37 @@
 import 'dart:math';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
+import 'package:intl/intl.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_total/src/model/trending_movie_model.dart';
 import 'package:movie_total/src/res/colors/app_colors.dart';
+import 'package:movie_total/src/utils/utils.dart';
 import 'package:movie_total/src/view_model/services/api_services.dart';
 
 class MovieView extends StatefulWidget {
   final int index;
   final String category;
-  const MovieView({super.key, required this.index,required this.category});
+  const MovieView({super.key, required this.index, required this.category});
 
   @override
   State<MovieView> createState() => _MovieViewState();
 }
 
 class _MovieViewState extends State<MovieView> {
+  late String? userEmail;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    userEmail = FirebaseAuth.instance.currentUser!.email;
+  }
+
+  late CollectionReference<Map<String, dynamic>> firestore =
+      FirebaseFirestore.instance.collection(userEmail!);
+
+  bool tap = false;
   ApiServices client = ApiServices();
   @override
   Widget build(BuildContext context) {
@@ -23,7 +39,9 @@ class _MovieViewState extends State<MovieView> {
       body: Container(
         height: double.maxFinite,
         child: FutureBuilder(
-          future: widget.category=='top_rated'? client.fetchTopRatedMovie():client.fetchPopularMovie(),
+          future: widget.category == 'top_rated'
+              ? client.fetchTopRatedMovie()
+              : client.fetchPopularMovie(),
           builder: (context, AsyncSnapshot<TrendingMovie> snapshot) {
             if (!snapshot.hasData) {
               return Center(
@@ -51,7 +69,7 @@ class _MovieViewState extends State<MovieView> {
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_back,
                         color: AppColor.whiteColor,
                       )),
@@ -65,7 +83,7 @@ class _MovieViewState extends State<MovieView> {
                     width: 100.w,
                     // color: Colors.red,
                     child: Column(children: [
-                      Icon(
+                      const Icon(
                         Icons.play_circle,
                         size: 35,
                         color: AppColor.whiteColor,
@@ -115,10 +133,55 @@ class _MovieViewState extends State<MovieView> {
                                   ),
                                 ),
                                 IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      tap = !tap;
+                                      if (tap) {
+                                        firestore
+                                            .doc(snapshot
+                                                .data!.results![widget.index].id
+                                                .toString())
+                                            .set({
+                                              'releaseDate':snapshot
+                                                  .data!
+                                                  .results![widget.index]
+                                                  .releaseDate
+                                                  .toString(),
+                                              'rating': snapshot
+                                                  .data!
+                                                  .results![widget.index]
+                                                  .voteAverage
+                                                  .toString(),
+                                              'img':
+                                                  'https://image.tmdb.org/t/p/original${snapshot.data!.results![widget.index].posterPath.toString()}',
+                                              'title': snapshot.data!
+                                                  .results![widget.index].title
+                                                  .toString(),
+                                              'index': widget.index,
+                                              'category': widget.category,
+                                              'id': snapshot.data!
+                                                  .results![widget.index].id
+                                                  .toString()
+                                            })
+                                            .then((value) => Utils.toastMessage(
+                                                "Added to favourite List"))
+                                            .onError(
+                                              (error, stackTrace) =>
+                                                  Utils.toastMessage(
+                                                error.toString(),
+                                              ),
+                                            );
+                                      } else {
+                                        // firestore
+                                        //     .doc(snapshot
+                                        //         .data!.docs[0]['id']
+                                        //         .toString())
+                                        //     .delete();
+                                      }
+                                      setState(() {});
+                                    },
                                     icon: Icon(
                                       Icons.favorite_outlined,
-                                      color: Colors.red,
+                                      color: tap ? Colors.red : Colors.white,
                                     ))
                               ]),
                         ),
