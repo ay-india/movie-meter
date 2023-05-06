@@ -67,6 +67,6 @@ description section <br /><br />
 <br /><br /><br />
 
 Favourite Screen <br /><br />
-<img src="https://user-images.githubusercontent.com/96453772/236632052-7bd73713-3cb0-423b-8502-00800d27c345.jpg" width="360" height="720" />
+<img src="https://user-images.githubusercontent.com/96453772/236638007-27e2d367-e68a-45e4-b659-35da0fcc4067.jpg" width="360" height="720" />
 
 <br /><br /><br />
