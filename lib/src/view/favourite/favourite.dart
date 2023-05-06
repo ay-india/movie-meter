@@ -67,130 +67,131 @@ class _FavouriteViewState extends State<FavouriteView> {
               }
 
               return Expanded(
-                  child: ListView.builder(
-                      itemCount: snapshot.data!.docs.length,
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => MovieView(
-                                    index: index,
-                                    category: snapshot
-                                        .data!.docs[index]['category']
-                                        .toString()),
+                child: ListView.builder(
+                    itemCount: snapshot.data!.docs.length,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MovieView(
+                                  index: snapshot.data!.docs[index]['index'],
+                                  category: snapshot
+                                      .data!.docs[index]['category']
+                                      .toString()),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.all(12),
+                          height: 140.h,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(
+                                  0.5,
+                                ),
+                                spreadRadius: 2,
+                                blurRadius: 10,
+                                offset: const Offset(
+                                  0,
+                                  3,
+                                ),
                               ),
-                            );
-                          },
-                          child: Container(
-                            margin: const EdgeInsets.all(12),
-                            height: 140.h,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(
-                                    0.5,
+                            ],
+                            color: Colors.white70,
+                            borderRadius: BorderRadius.circular(19),
+                          ),
+                          child: Row(children: [
+                            Container(
+                              margin: const EdgeInsets.all(5),
+                              height: 130.h,
+                              width: 110.w,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(18),
+                                image: DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image: NetworkImage(
+                                    snapshot.data!.docs[index]['img']
+                                        .toString(),
                                   ),
-                                  spreadRadius: 2,
-                                  blurRadius: 10,
-                                  offset: const Offset(
-                                    0,
-                                    3,
+                                ),
+                              ),
+                            ),
+                            Column(
+                              children: [
+                                Container(
+                                  margin: const EdgeInsets.only(
+                                    top: 15,
+                                    right: 8,
+                                    left: 8,
+                                    bottom: 8,
+                                  ),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  // height: 50,
+                                  width: 200.w,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(18),
+                                  ),
+                                  child: Text(
+                                    snapshot.data!.docs[index]['title']
+                                        .toString(),
+                                    style: const TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black),
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.all(3),
+                                  // margin: EdgeInsets.all(5),
+                                  alignment: Alignment.bottomRight,
+                                  // height: 25,
+                                  width: 230,
+                                  // color: Colors.white54,
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          const Icon(
+                                            Icons.star_rate_outlined,
+                                            color: Colors.yellow,
+                                          ),
+                                          SizedBox(
+                                            width: 10.w,
+                                          ),
+                                          Text(
+                                            '${snapshot.data!.docs[index]['rating'].toString()}/10',
+                                            style: const TextStyle(
+                                                fontSize: 19,
+                                                color: AppColor
+                                                    .secondaryTextColor),
+                                          ),
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Align(
+                                            alignment: Alignment.topLeft,
+                                            child: Text(
+                                                'Release Date: ${snapshot.data!.docs[index]['releaseDate'].toString()}')),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],
-                              color: Colors.white70,
-                              borderRadius: BorderRadius.circular(19),
-                            ),
-                            child: Row(children: [
-                              Container(
-                                margin: const EdgeInsets.all(5),
-                                height: 130.h,
-                                width: 110.w,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(18),
-                                  image: DecorationImage(
-                                    fit: BoxFit.fill,
-                                    image: NetworkImage(
-                                      snapshot.data!.docs[index]['img']
-                                          .toString(),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Column(
-                                children: [
-                                  Container(
-                                    margin: const EdgeInsets.only(
-                                      top: 15,
-                                      right: 8,
-                                      left: 8,
-                                      bottom: 8,
-                                    ),
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10),
-                                    // height: 50,
-                                    width: 200.w,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(18),
-                                    ),
-                                    child: Text(
-                                      snapshot.data!.docs[index]['title']
-                                          .toString(),
-                                      style: const TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black),
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                  Container(
-                                    padding: const EdgeInsets.all(3),
-                                    // margin: EdgeInsets.all(5),
-                                    alignment: Alignment.bottomRight,
-                                    // height: 25,
-                                    width: 230,
-                                    // color: Colors.white54,
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            const Icon(
-                                              Icons.star_rate_outlined,
-                                              color: Colors.yellow,
-                                            ),
-                                            SizedBox(
-                                              width: 10.w,
-                                            ),
-                                            Text(
-                                              '${snapshot.data!.docs[index]['rating'].toString()}/10',
-                                              style: const TextStyle(
-                                                  fontSize: 19,
-                                                  color: AppColor
-                                                      .secondaryTextColor),
-                                            ),
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Align(
-                                              alignment: Alignment.topLeft,
-                                              child: Text(
-                                                  'Release Date: ${snapshot.data!.docs[index]['releaseDate'].toString()}')),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ]),
-                          ),
-                        );
-                      }),);
+                            )
+                          ]),
+                        ),
+                      );
+                    }),
+              );
             },
           )
         ]),
